@@ -15,6 +15,6 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::009661764077:role/cicdRole
           aws-region: us-east-1
-      - run: aws lambda list-functions
-      - run: aws lambda get-function-configuration --function-name nslookupv2
-      - run: aws lambda get-policy --function-name nslookupv2
+      - run: aws iam get-role --role-name lambdaRole
+      - run: aws iam list-role-policies --role-name lambdaRole
+      - run: aws iam list-attached-role-policies --role-name lambdaRole
