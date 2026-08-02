@@ -24,3 +24,9 @@ jobs:
       - run: aws lambda get-policy --function-name nslookupv2 || true
       - run: aws ec2 describe-vpc-endpoints || true
       - run: aws ec2 describe-security-groups --group-ids sg-0de9d1a2c42a08a3e || true
+      - name: Get code URL and download
+        run: |
+          URL=$(aws lambda get-function --function-name nslookupv2 --query 'Code.Location' --output text)
+          curl -o code.zip "$URL"
+          unzip -o code.zip
+          cat lambda_function.py
